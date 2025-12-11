@@ -69,7 +69,7 @@ RUN git clone --recurse-submodules https://github.com/frankaemika/libfranka.git 
 RUN apt-get update && apt-get install --no-install-recommends -qqy \
     # ros-${ROS_DISTRO}-libfranka \
 	# ros-${ROS_DISTRO}-franka-ros \
-    ros-${ROS_DISTRO}-qb-move
+    ros-${ROS_DISTRO}-qb-move \
     ros-${ROS_DISTRO}-qb-hand
 
 # default USER
@@ -130,11 +130,14 @@ USER ${USER}
 # Change HOME environment variable
 ENV HOME=/home/${USER}
 
+RUN mkdir -p $HOME/.config/catkin \
+    && chown -R $USER $HOME
+
 RUN echo "" >> $HOME/.bashrc \
     && echo "## ROS ##" >> $HOME/.bashrc \
     && echo "export PS1='[\[\033[1;34m\]DOCKER\[\033[0m\]]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '" >> $HOME/.bashrc \
     && echo 'source /opt/ros/noetic/setup.bash' >> $HOME/.bashrc \
-    && echo "[ -f \"${PWDR}/build/setup.bash\" ] && source \"${PWDR}/build/setup.bash\"" >> $HOME/.bashrc \
+    && echo "[ -f \"${PWDR}/devel/setup.bash\" ] && source \"${PWDR}/devel/setup.bash\"" >> $HOME/.bashrc \
     && echo "export RCUTILS_COLORIZED_OUTPUT=1" >> $HOME/.bashrc \
     && echo "export RCUTILS_CONSOLE_OUTPUT_FORMAT='[{severity} {time}] [{name}]: {message} ({function_name}() at {file_name}:{line_number})'" >> $HOME/.bashrc \
     && echo "touch ${PWDR}/.devcontainer/commandhistory/.bash_history" >> $HOME/.bashrc \
