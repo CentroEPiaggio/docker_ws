@@ -33,7 +33,8 @@ RUN apt update && apt install --no-install-recommends -qqy \
     libfmt-dev \
     lsb-release \
     xterm \
-    python3-pip
+    python3-pip \
+    tmux
 
 # install ignition gazebo
 # RUN curl https://packages.osrfoundation.org/gazebo.gpg --output /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg
@@ -74,7 +75,8 @@ RUN apt update && apt install -y --no-install-recommends \
     ros-humble-rviz2 \
     ros-humble-xacro \
     ros-humble-ign-ros2-control \
-    ros-humble-rqt-common-plugins
+    ros-humble-rqt-common-plugins \
+    ros-humble-diff-drive-controller
 
 # Install Pinocchio and its dependencies
 RUN mkdir -p /etc/apt/keyrings \

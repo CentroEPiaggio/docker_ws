@@ -1,0 +1,19 @@
+diff --git a/franka_gazebo_bringup/launch/gazebo_franka_arm_example_controller.launch.py b/franka_gazebo_bringup/launch/gazebo_franka_arm_example_controller.launch.py
+index cf75a57..98b525e 100644
+--- a/franka_gazebo_bringup/launch/gazebo_franka_arm_example_controller.launch.py
++++ b/franka_gazebo_bringup/launch/gazebo_franka_arm_example_controller.launch.py
+@@ -127,9 +127,13 @@ def generate_launch_description():
+         controller_name,
+         default_value='gravity_compensation_example_controller',
+         description='The controller name to be used. You can choose one from the franka_example_controllers.')
++        
++    gazebo_bringup_share = get_package_share_directory('franka_gazebo_bringup')
++    gz_world = os.path.join(
++        gazebo_bringup_share, 'worlds', 'empty_no_gravity.sdf')
+     gz_args_launch_argument = DeclareLaunchArgument(
+         gz_args_name,
+-        default_value='-r empty.sdf',
++        default_value=f'-r {gz_world}',
+         description='Extra args to be forwared to gazebo')
+     rviz_launch_argument = DeclareLaunchArgument(
+         rviz_name,
