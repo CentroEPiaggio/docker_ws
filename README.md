@@ -32,7 +32,7 @@ You also would probably need [Visual Studio Code](https://code.visualstudio.com/
 ## Usage
 Clone the repository wherever you want on the system with recursive behavior(better to clone with linux for line endings, not tested with WSL but should work)
 ```bash
-git clone --branch dev/st/ros2_franka https://github.com/CentroEPiaggio/docker_ws
+git clone --branch dev/st/franka_ros2 https://github.com/CentroEPiaggio/docker_ws
 ```
 
 Build the container:
